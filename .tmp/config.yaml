@@ -1,0 +1,33 @@
+api:
+  port: "8989"
+  # development/production/test
+  environment: "development"
+  ssl:
+    enabled: false
+    certificate: "path/to/certificate.pem"
+    key: "path/to/key.pem"
+database:
+  username: "hoppscotch"
+  password: "hoppscotch"
+  database: "hoppscotch"
+  host: "127.0.0.1"
+  port: "3306"
+  driver: "mysql" # mysql or postgres
+  debug: true
+allowed_domains: # This is to allow CORS to do it's magic.
+  - "https://hoppscotch.io"
+frontend_domain: "https://hoppscotch.io" # This is to format mail links.
+firebase:
+  serviceAccountFile: "/etc/api-config/firebase-admin-sdk.json" # Path to Firebase SDK admin Service Account JSON file.
+smtp: # SMTP information to send invite mails.
+  host: ""
+  port: 587
+  username: ""
+  password: ""
+  from:
+    name: ""
+    email: ""
+mailTemplates:
+  teamInvite:
+    subject: "{{.InvitingUserName}} invited you to join {{.TeamName}} in Hoppscotch"
+    body: "<html><body>{{.InvitingUserName}} with {{.TeamName}} has invited you to use Hoppscotch to collaborate with them. Click <a href=\"{{.JoinLink}}\">here</a> to set up your account and get started.</body></html>"

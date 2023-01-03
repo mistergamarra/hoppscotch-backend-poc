@@ -1,0 +1,18 @@
+scalar DateTime
+
+type Shortcode {
+  """
+  The shortcode. 12 digit alphanumeric.
+  """
+  id: ID!
+
+  """
+  JSON string representing the request data
+  """
+  request: String!
+
+  """
+  Timestamp of when the Shortcode was created
+  """
+  createdOn: DateTime!
+}

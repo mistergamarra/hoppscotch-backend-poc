@@ -1,0 +1,30 @@
+version: '3.1'
+
+services:
+  backend:
+    image: jerbob92/hoppscotch-backend:latest
+    restart: always
+    ports:
+      - "8989:8989"
+    depends_on:
+      - db
+    volumes:
+      # Copy config.example.yaml to ./tmp/config.yaml and change the values
+      - ./tmp/config.yaml:/etc/api-config/config.yaml
+      # Download Firebase admin sdk service account and save it as ./tmp/firebase-admin-sdk.json
+      - ./tmp/firebase-admin-sdk.json:/etc/api-config/firebase-admin-sdk.json
+  db:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=hoppscotch
+      - POSTGRES_PASSWORD=hoppscotch
+      - POSTGRES_DB=hoppscotch
+    ports:
+      - '5432:5432'
+    volumes:
+      - db:/var/lib/postgresql/data
+volumes:
+  db:
+    driver: local
+
